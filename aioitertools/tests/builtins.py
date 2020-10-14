@@ -6,7 +6,6 @@ from typing import AsyncIterator
 from unittest import TestCase
 
 import aioitertools as ait
-
 from .helpers import async_test
 
 slist = ["A", "B", "C"]
@@ -101,9 +100,9 @@ class BuiltinsTest(TestCase):
             def __anext__(self):
                 if self.index > 2:
                     raise StopAsyncIteration()
-                return self.next()
+                return self.fake_next()
 
-            async def next(self):
+            async def fake_next(self):
                 value = slist[self.index]
                 self.index += 1
                 return value
